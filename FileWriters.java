@@ -2,6 +2,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.BufferedReader;
 
 
 public class FileWriters{
@@ -20,8 +21,20 @@ public class FileWriters{
         fw.write(str);
         fw.close();
     }
+    public static int countChars (String inputFile) throws IOException{
+     BufferedReader reader = new BufferedReader (new FileReader (inputFile));
+        
+            int charCount = 0;
+            while (reader.read() != -1)
+            {
+                charCount++;
+            }
+            reader.close();
+        return charCount;
+    }
     public static void main(String[] args) throws IOException {
         System.out.println(readFile ("file.txt"));
         writeFile ("poop", "file.txt");
+        System.out.println (countChars ("file.txt"));
     }
 }
